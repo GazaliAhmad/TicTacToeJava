@@ -4,10 +4,11 @@ import java.util.*;
 
 /* A simple TicTacToe game
 
-Further logic Improvements
-1. If cpu placement results in a win, place Y on the board, then print "cpu wins". For now, it simply prints "cpu win"
-2. When all 8 positions are filled up and the ninth position placement results in a win for X or Y, it shows a TIE.
-3. Convert cpu placement from random to strategy rules.
+Stretch Goal:
+1. Convert cpu placement from random to strategy rules. Even if it's random, cpu sometimes can win.
+
+Super Stretch Goal:
+1. Convert it to a Windows GUI game.
 
  */
 
@@ -26,7 +27,8 @@ public class TicTacToe {
 
         while (true) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Enter your placement (1 - 9): ");
+            System.out.print("\n" +
+                    "Enter your placement (1 - 9): ");
 
             int playerPos = scan.nextInt();
 
@@ -34,12 +36,13 @@ public class TicTacToe {
                 System.out.println("Position taken! Enter a correct position: ");
                 playerPos = scan.nextInt();
             }
-
             placePiece(gameBoard, playerPos, "player");
+
+            printGameBoard(gameBoard);
 
             String result = checkWinner();
 
-            if (result.length() > 0 ) {
+            if (result.length() > 0) {
                 System.out.println(result);
                 break;
             }
@@ -52,11 +55,12 @@ public class TicTacToe {
             }
             placePiece(gameBoard, cpuPos, "cpu");
 
+            System.out.println("\n" + "cpu placement at position: " + cpuPos);
             printGameBoard(gameBoard);
 
             result = checkWinner();
 
-            if (result.length() > 0 ) {
+            if (result.length() > 0) {
                 System.out.println(result);
                 break;
             }
@@ -85,33 +89,15 @@ public class TicTacToe {
         }
 
         switch (pos) {
-            case 1:
-                gameBoard[0][0] = symbol;
-                break;
-            case 2:
-                gameBoard[0][2] = symbol;
-                break;
-            case 3:
-                gameBoard[0][4] = symbol;
-                break;
-            case 4:
-                gameBoard[2][0] = symbol;
-                break;
-            case 5:
-                gameBoard[2][2] = symbol;
-                break;
-            case 6:
-                gameBoard[2][4] = symbol;
-                break;
-            case 7:
-                gameBoard[4][0] = symbol;
-                break;
-            case 8:
-                gameBoard[4][2] = symbol;
-                break;
-            case 9:
-                gameBoard[4][4] = symbol;
-                break;
+            case 1 -> gameBoard[0][0] = symbol;
+            case 2 -> gameBoard[0][2] = symbol;
+            case 3 -> gameBoard[0][4] = symbol;
+            case 4 -> gameBoard[2][0] = symbol;
+            case 5 -> gameBoard[2][2] = symbol;
+            case 6 -> gameBoard[2][4] = symbol;
+            case 7 -> gameBoard[4][0] = symbol;
+            case 8 -> gameBoard[4][2] = symbol;
+            case 9 -> gameBoard[4][4] = symbol;
         }
     }
 
@@ -141,16 +127,20 @@ public class TicTacToe {
         winning.add(cross1);
         winning.add(cross2);
 
-        for(List l : winning) {
-            if (playerPositions.containsAll(l)){
+        for (List l : winning) {
+            if (playerPositions.containsAll(l)) {
+
                 return "Congratulations you won !";
-            } else if(cpuPositions.containsAll(l)){
+            }
+            if (cpuPositions.containsAll(l)) {
                 return "The CPU won !";
-            } else if (playerPositions.size() + cpuPositions.size() == 9){
+            }
+            if (playerPositions.size() + cpuPositions.size() == 9) {
                 return "It's a tie!";
             }
         }
         return "";
 
     }
+
 }
