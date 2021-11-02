@@ -123,17 +123,17 @@ public class TicTacToe {
         winning.add(cross1);
         winning.add(cross2);
 
-        for (List l : winning) {
+        for (int i = 0; i < winning.size(); i++) {
+            List l = winning.get(i);
             if (playerPositions.containsAll(l)) {
-                return "Congratulations you won !";
-            }
-            if (cpuPositions.containsAll(l)) {
-                return "The CPU won !";
-            }
-            if (playerPositions.size() + cpuPositions.size() == 9) {
-                return "It's a tie!";
+                return "Congratulations you won !!";
+            } else if (cpuPositions.containsAll(l)) {
+                return "The CPU won !!";
+            } else if (winning.size() == 9) {
+                return "It's a tie !!";
             }
         }
         return "";
     }
 }
+
