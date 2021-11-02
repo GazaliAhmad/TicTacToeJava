@@ -123,14 +123,23 @@ public class TicTacToe {
         winning.add(cross1);
         winning.add(cross2);
 
+        /* Logic Error
+
+        Last Pos when it's clearly a tie, program still runs and don't stop
+
+         */
+
         for (int i = 0; i < winning.size(); i++) {
             List l = winning.get(i);
             if (playerPositions.containsAll(l)) {
                 return "Congratulations you won !!";
             } else if (cpuPositions.containsAll(l)) {
                 return "The CPU won !!";
-            } else if (winning.size() == 9) {
-                return "It's a tie !!";
+            } else if (winning.size() == 9){
+                return "It's a tie";
+
+                //else if (playerPositions.size() + cpuPositions.size() == 9) {
+                //    return "It's a tie !!";
             }
         }
         return "";
