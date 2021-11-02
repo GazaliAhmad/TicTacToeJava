@@ -27,8 +27,7 @@ public class TicTacToe {
 
         while (true) {
             Scanner scan = new Scanner(System.in);
-            System.out.print("\n" +
-                    "Enter your placement (1 - 9): ");
+            System.out.printf("\nEnter your placement (1 - 9): ");
 
             int playerPos = scan.nextInt();
 
@@ -41,7 +40,6 @@ public class TicTacToe {
             printGameBoard(gameBoard);
 
             String result = checkWinner();
-
             if (result.length() > 0) {
                 System.out.println(result);
                 break;
@@ -55,16 +53,15 @@ public class TicTacToe {
             }
             placePiece(gameBoard, cpuPos, "cpu");
 
-            System.out.println("\n" + "cpu placement at position: " + cpuPos);
+            System.out.printf("\ncpu placement at position: %d%n", cpuPos);
+
             printGameBoard(gameBoard);
 
             result = checkWinner();
-
             if (result.length() > 0) {
                 System.out.println(result);
                 break;
             }
-
         }
     }
 
@@ -115,7 +112,6 @@ public class TicTacToe {
         List cross2 = Arrays.asList(3, 5, 7);
 
         List<List> winning = new ArrayList<List>();
-
         winning.add(topRow);
         winning.add(midRow);
         winning.add(botRow);
@@ -129,7 +125,6 @@ public class TicTacToe {
 
         for (List l : winning) {
             if (playerPositions.containsAll(l)) {
-
                 return "Congratulations you won !";
             }
             if (cpuPositions.containsAll(l)) {
@@ -140,7 +135,5 @@ public class TicTacToe {
             }
         }
         return "";
-
     }
-
 }
