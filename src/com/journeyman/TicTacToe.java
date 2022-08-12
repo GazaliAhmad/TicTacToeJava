@@ -13,7 +13,7 @@ Super Stretch Goal:
  */
 
 public class TicTacToe {
-    static ArrayList<Integer> playerPositions = new ArrayList<Integer>();
+    static ArrayList<Int7eger> playerPositions = new ArrayList<Integer>();
     static ArrayList<Integer> cpuPositions = new ArrayList<Integer>();
 
     public static void main(String[] args) {
